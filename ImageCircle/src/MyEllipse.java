@@ -11,6 +11,8 @@ import static javafx.scene.layout.VBox.setMargin;
 
 public class MyEllipse extends Application {
     private Ellipse ceiling;
+    private Ellipse ceiling2;
+    private Ellipse ceiling3;
     private ImageView ceiling_image;
     private VBox nav;
     private HBox buttonSet;
@@ -49,11 +51,30 @@ public class MyEllipse extends Application {
 
     private void initializeCeiling(AnchorPane root) {
         ceiling = new Ellipse();
-        ceiling.centerXProperty().bind(root.widthProperty().multiply(0.5));
-        ceiling.centerYProperty().setValue(0);
-        ceiling.radiusXProperty().bind(root.widthProperty().multiply(0.8));
-        ceiling.radiusYProperty().bind(root.heightProperty().multiply(0.6));
+        ceiling2 = new Ellipse();
+        ceiling3 = new Ellipse();
+        ceiling.centerXProperty().setValue(200);
+        ceiling.centerYProperty().setValue(250);
+        
+        ceiling2.centerXProperty().setValue(450);
+        ceiling2.centerYProperty().setValue(250);
+        
+        ceiling3.centerXProperty().setValue(700);
+        ceiling3.centerYProperty().setValue(250);
+        
+//      ceiling.centerXProperty().bind(root.widthProperty().multiply(0.5));
+        //        ceiling.radiusXProperty().bind(root.widthProperty().multiply(0.1));
+//        ceiling.radiusYProperty().bind(root.heightProperty().multiply(0.1));
+        ceiling.radiusXProperty().setValue(100);
+        ceiling.radiusYProperty().setValue(100);
+        
+        ceiling2.radiusXProperty().setValue(100);
+        ceiling2.radiusYProperty().setValue(100);
+        
+        ceiling3.radiusXProperty().setValue(100);
+        ceiling3.radiusYProperty().setValue(100);
     }
+
 
     private void initializeNav(AnchorPane root) {
         nav = new VBox();
@@ -90,10 +111,18 @@ public class MyEllipse extends Application {
 
     private void initializeContent(AnchorPane root) {
         Image image = new Image(
-                "refugees.jpg"
+                "file:images/refugees.jpg"
         );
         ceiling_image = new ImageView(image);
         ceiling_image.setClip(ceiling);
+        root.getChildren().add(ceiling_image);
+        
+        ceiling_image = new ImageView(image);
+        ceiling_image.setClip(ceiling2);
+        root.getChildren().add(ceiling_image);
+        
+        ceiling_image = new ImageView(image);
+        ceiling_image.setClip(ceiling3);
         root.getChildren().add(ceiling_image);
     }
 }
