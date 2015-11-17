@@ -35,7 +35,7 @@ public class MyEllipse extends Application {
         primaryStage.setTitle("Refugees");
         primaryStage.setScene(primaryScene);
         primaryStage.setWidth(900);
-        primaryStage.setHeight(800);
+        primaryStage.setHeight(700);
         primaryStage.setResizable(false);
 //        primaryStage.minHeightProperty().setValue(800);
 //        primaryStage.maxHeightProperty().setValue(800);
