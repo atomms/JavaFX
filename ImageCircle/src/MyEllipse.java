@@ -68,10 +68,10 @@ public class MyEllipse extends Application {
         info = new TextArea();
         setMargin(info, new Insets(10, 0, 0, 0));
         info.setWrapText(true);
-        info.setEditable(false);
+        info.setEditable(true);
         buttonSet = new HBox();
         initializeButtonSet(nav);
-        presentation_title = new Label("Título de la Presentación");
+        presentation_title = new Label("About this photo");
         presentation_title.setId("titulo");
         nav.alignmentProperty().setValue(Pos.CENTER);
         nav.getChildren().addAll(presentation_title, info, buttonSet);
@@ -79,7 +79,7 @@ public class MyEllipse extends Application {
 
     private void initializeButtonSet(VBox nav) {
         previous = new Button("<");
-        comment = new Button("Doy mi opinión");
+        comment = new Button("Send comments");
         comment.setId("comment_button");
         next = new Button(">");
         buttonSet.spacingProperty().bind(nav.widthProperty().multiply(0.15));
