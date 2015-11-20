@@ -101,12 +101,12 @@ public class MyEllipse extends Application {
         
         ceiling_image = new ImageView(image);      
         ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setContrast(0);
+        colorAdjust.setContrast(1);
         colorAdjust.setHue(0);
         colorAdjust.setBrightness(0);
         colorAdjust.setSaturation(0);
 //        ceiling_image.setEffect(colorAdjust);
-//        ceiling_image.setEffect(new GaussianBlur(5));
+        ceiling_image.setEffect(new GaussianBlur(5));
         ceiling_image.setClip(ceiling);
         root.getChildren().add(ceiling_image);
     }
