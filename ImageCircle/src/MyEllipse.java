@@ -62,9 +62,6 @@ public class MyEllipse extends Application {
         ceiling3.centerXProperty().setValue(700);
         ceiling3.centerYProperty().setValue(250);
         
-//      ceiling.centerXProperty().bind(root.widthProperty().multiply(0.5));
-        //        ceiling.radiusXProperty().bind(root.widthProperty().multiply(0.1));
-//        ceiling.radiusYProperty().bind(root.heightProperty().multiply(0.1));
         ceiling.radiusXProperty().setValue(100);
         ceiling.radiusYProperty().setValue(100);
         
