@@ -1,16 +1,21 @@
+
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Ellipse;
 import javafx.stage.Stage;
-
 import static javafx.scene.layout.VBox.setMargin;
 
 public class MyEllipse extends Application {
-    private Ellipse ceiling;
+	private Ellipse ceiling0;
+	private Ellipse ceiling1;
     private Ellipse ceiling2;
     private Ellipse ceiling3;
     private ImageView ceiling_image;
@@ -25,7 +30,7 @@ public class MyEllipse extends Application {
     @Override
     public void start(Stage primaryStage) {
         AnchorPane root = new AnchorPane();
-        Scene primaryScene = new Scene(root, 900, 800);
+        Scene primaryScene = new Scene(root, 700, 700);
         initializeCeiling(root);
         initializeNav(root);
         initializeContent(root);
@@ -36,7 +41,7 @@ public class MyEllipse extends Application {
     private void initializePrimaryStage(Stage primaryStage, Scene primaryScene) {
         primaryStage.setTitle("Refugees");
         primaryStage.setScene(primaryScene);
-        primaryStage.setWidth(900);
+        primaryStage.setWidth(700);
         primaryStage.setHeight(700);
         primaryStage.setResizable(false);
 //        primaryStage.minHeightProperty().setValue(800);
@@ -50,33 +55,44 @@ public class MyEllipse extends Application {
     }
 
     private void initializeCeiling(AnchorPane root) {
-        ceiling = new Ellipse();
+    	ceiling0 = new Ellipse();
+    	ceiling1 = new Ellipse();
         ceiling2 = new Ellipse();
-        ceiling3 = new Ellipse();
-        ceiling.centerXProperty().setValue(200);
-        ceiling.centerYProperty().setValue(250);
+    	
+//        relative positioning
+    	ceiling0.centerXProperty().bind(root.widthProperty().multiply(0.5));
+        ceiling0.centerYProperty().setValue(0);
+        ceiling0.radiusXProperty().bind(root.widthProperty().multiply(0.8));
+        ceiling0.radiusYProperty().bind(root.heightProperty().multiply(0.6));
         
-        ceiling2.centerXProperty().setValue(450);
-        ceiling2.centerYProperty().setValue(250);
+    	ceiling1.centerXProperty().bind(root.widthProperty().multiply(0.32));
+        ceiling1.centerYProperty().bind(root.widthProperty().multiply(0.38));
+        ceiling1.radiusXProperty().bind(root.widthProperty().multiply(0.1));
+        ceiling1.radiusYProperty().bind(root.heightProperty().multiply(0.1));
         
-        ceiling3.centerXProperty().setValue(700);
-        ceiling3.centerYProperty().setValue(250);
-        
-        ceiling.radiusXProperty().setValue(100);
-        ceiling.radiusYProperty().setValue(100);
-        
-        ceiling2.radiusXProperty().setValue(100);
-        ceiling2.radiusYProperty().setValue(100);
-        
-        ceiling3.radiusXProperty().setValue(100);
-        ceiling3.radiusYProperty().setValue(100);
+    	ceiling2.centerXProperty().bind(root.widthProperty().multiply(0.65));
+        ceiling2.centerYProperty().bind(root.widthProperty().multiply(0.38));
+        ceiling2.radiusXProperty().bind(root.widthProperty().multiply(0.1));
+        ceiling2.radiusYProperty().bind(root.heightProperty().multiply(0.1));
+    	
+////	absolute positioning
+//        ceiling1.centerXProperty().setValue(200);
+//        ceiling1.centerYProperty().setValue(250);
+//        ceiling1.radiusXProperty().setValue(100);
+//        ceiling1.radiusYProperty().setValue(100);
+//        
+//        ceiling2.centerXProperty().setValue(450);
+//        ceiling2.centerYProperty().setValue(250);  
+//        ceiling2.radiusXProperty().setValue(100);
+//        ceiling2.radiusYProperty().setValue(100);
+
     }
 
 
     private void initializeNav(AnchorPane root) {
         nav = new VBox();
         initializeControls(nav);
-        AnchorPane.setBottomAnchor(nav, 20.0);
+        AnchorPane.setBottomAnchor(nav, 10.0);
         AnchorPane.setLeftAnchor(nav, 120.0);
         AnchorPane.setRightAnchor(nav, 120.0);
         root.getChildren().add(nav);
@@ -110,16 +126,31 @@ public class MyEllipse extends Application {
         Image image = new Image(
                 "file:images/refugees.jpg"
         );
+        
+//        ceiling_image = new ImageView(image);
+//        ceiling_image.setClip(ceiling0);
+//        ceiling_image.setEffect(new GaussianBlur(20));
+//        root.getChildren().add(ceiling_image);
+        
         ceiling_image = new ImageView(image);
-        ceiling_image.setClip(ceiling);
+        ceiling_image.setClip(ceiling1);
         root.getChildren().add(ceiling_image);
+
+        
+        ceiling_image.addEventHandler(EventType.ROOT, new GenericHandler());
         
         ceiling_image = new ImageView(image);
         ceiling_image.setClip(ceiling2);
         root.getChildren().add(ceiling_image);
         
-        ceiling_image = new ImageView(image);
-        ceiling_image.setClip(ceiling3);
-        root.getChildren().add(ceiling_image);
+    }
+    
+    private class GenericHandler implements EventHandler<Event> {
+
+        @Override
+        public void handle(Event event) {
+            System.out.println(event.getEventType());
+
+        }
     }
 }
