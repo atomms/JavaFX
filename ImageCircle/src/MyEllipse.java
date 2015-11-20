@@ -1,12 +1,18 @@
 import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.*;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import static javafx.scene.layout.VBox.setMargin;
 
 public class MyEllipse extends Application {
@@ -92,7 +98,16 @@ public class MyEllipse extends Application {
         Image image = new Image(
                 "refugees.jpg"
         );
-        ceiling_image = new ImageView(image);
+        
+        ceiling_image = new ImageView(image);      
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setContrast(0);
+        colorAdjust.setHue(-0.5);
+        colorAdjust.setBrightness(0);
+        colorAdjust.setSaturation(0);
+//        ceiling_image.setEffect(colorAdjust);
+        
+        ceiling_image.setEffect(new GaussianBlur());
         ceiling_image.setClip(ceiling);
         root.getChildren().add(ceiling_image);
     }
