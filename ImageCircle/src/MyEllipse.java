@@ -29,7 +29,7 @@ public class MyEllipse extends Application {
     @Override
     public void start(Stage primaryStage) {
         AnchorPane root = new AnchorPane();
-        Scene primaryScene = new Scene(root, 900, 800);
+        Scene primaryScene = new Scene(root, 700, 700);
         initializeCeiling(root);
         initializeNav(root);
         initializeContent(root);
@@ -40,7 +40,7 @@ public class MyEllipse extends Application {
     private void initializePrimaryStage(Stage primaryStage, Scene primaryScene) {
         primaryStage.setTitle("Refugees");
         primaryStage.setScene(primaryScene);
-        primaryStage.setWidth(900);
+        primaryStage.setWidth(700);
         primaryStage.setHeight(700);
         primaryStage.setResizable(false);
 //        primaryStage.minHeightProperty().setValue(800);
@@ -96,18 +96,17 @@ public class MyEllipse extends Application {
 
     private void initializeContent(AnchorPane root) {
         Image image = new Image(
-                "refugees.jpg"
+                "file:images/refugees.jpg"
         );
         
         ceiling_image = new ImageView(image);      
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(0);
-        colorAdjust.setHue(-0.5);
+        colorAdjust.setHue(0);
         colorAdjust.setBrightness(0);
         colorAdjust.setSaturation(0);
 //        ceiling_image.setEffect(colorAdjust);
-        
-        ceiling_image.setEffect(new GaussianBlur());
+//        ceiling_image.setEffect(new GaussianBlur(5));
         ceiling_image.setClip(ceiling);
         root.getChildren().add(ceiling_image);
     }
