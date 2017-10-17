@@ -6,6 +6,7 @@ import javafx.event.EventType;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
@@ -17,8 +18,9 @@ public class MyEllipse extends Application {
 	private Ellipse ceiling0;
 	private Ellipse ceiling1;
     private Ellipse ceiling2;
-    private Ellipse ceiling3;
-    private ImageView ceiling_image;
+    private ImageView ceiling_image1;
+    private ImageView ceiling_image2;
+    private ImageView ceiling_image3;
     private VBox nav;
     private HBox buttonSet;
     private Label presentation_title;
@@ -127,21 +129,22 @@ public class MyEllipse extends Application {
                 "file:images/refugees.jpg"
         );
         
-//        ceiling_image = new ImageView(image);
-//        ceiling_image.setClip(ceiling0);
-//        ceiling_image.setEffect(new GaussianBlur(20));
-//        root.getChildren().add(ceiling_image);
+        ceiling_image1 = new ImageView(image);
+        ceiling_image1.setClip(ceiling0);
+        ceiling_image1.setEffect(new GaussianBlur(20));
+        root.getChildren().add(ceiling_image1);
         
-        ceiling_image = new ImageView(image);
-        ceiling_image.setClip(ceiling1);
-        root.getChildren().add(ceiling_image);
+        ceiling_image2 = new ImageView(image);
+        ceiling_image2.setClip(ceiling1);
+        root.getChildren().add(ceiling_image2);
 
         
-        ceiling_image.addEventHandler(EventType.ROOT, new GenericHandler());
+        ceiling_image2.addEventHandler(EventType.ROOT, new GenericHandler());
         
-        ceiling_image = new ImageView(image);
-        ceiling_image.setClip(ceiling2);
-        root.getChildren().add(ceiling_image);
+        ceiling_image3 = new ImageView(image);
+//        ceiling_image3.setEffect(new GaussianBlur(20));
+        ceiling_image3.setClip(ceiling2);
+        root.getChildren().add(ceiling_image3);
         
     }
     
@@ -149,8 +152,8 @@ public class MyEllipse extends Application {
 
         @Override
         public void handle(Event event) {
-            System.out.println(event.getEventType());
-
+            System.out.println(event.getEventType());            
+//            ceiling_image2.setEffect(new ColorAdjust(0,1,0,0));
         }
     }
 }
